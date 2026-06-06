@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en" data-theme="light" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- title -->
+  <title>Projecten overzicht</title>
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+
+  <!-- google font  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+
+  <!-- Font-awesome font icon cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- swiper js  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+  <link rel="stylesheet" href="./css/style.min.css" />
+  <!-- <link rel="stylesheet" href="./input-css/input.css" /> -->
+</head>
+
+<body class="relative">
+  <!-- header start  -->
+  <header id="main-header"
+    class="md:fixed sticky top-0 left-0 right-0 z-50 md:bg-transparent bg-dark-navy xl:px-[27px] xl:pt-[27px] transition-all duration-300 ease-linear">
+    <div class="md:px-[27px] md:py-[29px] p-4 hd-inner">
+      <div class="flex items-center justify-between h-16 lg:h-18">
+        <!-- LEFT — Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <img src="./images/logo.png" alt="logo" class="md:w-auto w-[190px]" />
+        </a>
+
+        <!-- CENTER — Desktop Nav -->
+        <nav
+          class="hidden xl:flex items-center gap-8 rounded-[30px] backdrop-blur-[10%] backdrop-opacity-0 backdrop-brightness-200 bg-[#85796B]/80 px-8 py-5"
+          aria-label="Main navigation">
+          <a href="#"
+            class="nav-link-desktop text-pure-white text-base leading-[22px] hover:text-vida-orange transition-colors duration-200">Products</a>
+          <a href="#"
+            class="nav-link-desktop text-pure-white text-base leading-[22px] hover:text-vida-orange transition-colors duration-200">Solutions</a>
+          <a href="#"
+            class="nav-link-desktop text-pure-white text-base leading-[22px] hover:text-vida-orange transition-colors duration-200">Pricing</a>
+          <a href="#"
+            class="nav-link-desktop text-pure-white text-base leading-[22px] hover:text-vida-orange transition-colors duration-200">Resources</a>
+          <a href="#"
+            class="nav-link-desktop text-pure-white text-base leading-[22px] hover:text-vida-orange transition-colors duration-200">Company</a>
+        </nav>
+
+        <!-- RIGHT — Desktop CTA -->
+        <div class="flex items-center gap-3">
+          <!--  toggle -->
+
+          <div
+            class="flex flex-row items-center justify-center rounded-lg transition-colors cursor-pointer duration-200 text-slate-800">
+            <!-- button  -->
+            <a href="contant-us.html" class="lg:flex hidden relative group">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.583 59.999" class="btn-shape w-[197px] h-[60px]">
+                <path
+                  d="M167,66H30A30.008,30.008,0,0,1,18.323,8.358,29.811,29.811,0,0,1,30,6H167a29.982,29.982,0,0,1,25.583,14.324,36.081,36.081,0,0,0,0,31.352A29.982,29.982,0,0,1,167,66Z"
+                  transform="translate(0 -6)" fill="#fff" />
+              </svg>
+
+              <div
+                class="absolute top-0 left-0 w-full h-full flex items-center justify-center gap-2 text-dark-navy text-base group-hover:text-white transition-all duration-500 ease-in-out">
+                <span>Offerte aanvragen</span>
+              </div>
+            </a>
+            <!-- toggle bar  -->
+            <button id="menu-toggle"
+              class="bg-vida-orange hover:bg-white hover:text-vida-orange border border-vida-orange rounded-full w-[60px] h-[60px] flex items-center justify-center text-white cursor-pointer"
+              aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-drawer">
+              <i class="fa-classic fa-solid fa-bars-staggered"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!--   backdrop  -->
+  <div id="backdrop" class="fixed inset-0 z-50 bg-dark-navy/30 backdrop-blur-[2px]" aria-hidden="true"></div>
+
+  <!--  offcanvas  -->
+  <aside id="mobile-drawer" class="fixed top-0 right-0 z-50 h-full w-[400px] bg-white shadow-2xl flex flex-col"
+    role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <!-- Drawer header -->
+    <div class="flex items-center justify-between px-4 py-4 border-b border-slate-100 bg-dark-navy">
+      <a href="#" class="flex items-center gap-2.5">
+        <img src="./images/logo.png" alt="logo" class="w-[190px]" />
+      </a>
+      <button id="drawer-close"
+        class="w-9 h-9 rounded-lg hover:bg-slate-100 flex items-center justify-center text-white hover:text-navbg-dark-navy transition-colors duration-200 cursor-pointer"
+        aria-label="Close menu">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75"
+          stroke-linecap="round">
+          <path d="M3 3l10 10M13 3L3 13" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Nav links -->
+    <nav class="flex flex-col px-4 pt-6 gap-1 flex-1" aria-label="Mobile navigation">
+      <a href="#"
+        class="nav-link-mobile flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 hover:text-navbg-dark-navy hover:bg-slate-50 text-[15px] font-medium transition-colors duration-200 group">
+        <span class="text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="7" height="7" rx="1.5" />
+            <rect x="11" y="2" width="7" height="7" rx="1.5" />
+            <rect x="2" y="11" width="7" height="7" rx="1.5" />
+            <rect x="11" y="11" width="7" height="7" rx="1.5" />
+          </svg>
+        </span>
+        Products
+      </a>
+      <a href="#"
+        class="nav-link-mobile flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 hover:text-navbg-dark-navy hover:bg-slate-50 text-[15px] font-medium transition-colors duration-200 group">
+        <span class="text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 2L2 7l8 5 8-5-8-5zM2 13l8 5 8-5M2 10l8 5 8-5" />
+          </svg>
+        </span>
+        Solutions
+      </a>
+      <a href="#"
+        class="nav-link-mobile flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 hover:text-navbg-dark-navy hover:bg-slate-50 text-[15px] font-medium transition-colors duration-200 group">
+        <span class="text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 10h14M3 6h14M3 14h9" />
+            <circle cx="16" cy="14" r="2.5" />
+          </svg>
+        </span>
+        Pricing
+      </a>
+      <a href="#"
+        class="nav-link-mobile flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 hover:text-navbg-dark-navy hover:bg-slate-50 text-[15px] font-medium transition-colors duration-200 group">
+        <span class="text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h12v12H4z" />
+            <path d="M8 8h4M8 12h2" />
+          </svg>
+        </span>
+        Resources
+      </a>
+      <a href="#"
+        class="nav-link-mobile flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 hover:text-navbg-dark-navy hover:bg-slate-50 text-[15px] font-medium transition-colors duration-200 group">
+        <span class="text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="7" r="3" />
+            <path d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+          </svg>
+        </span>
+        Company
+      </a>
+    </nav>
+
+    <!-- CTA section -->
+    <div class="cta-mobile px-4 pb-8 pt-4 flex flex-col gap-3 border-t border-slate-100 mt-2">
+      <a href="#"
+        class="text-center text-[14px] font-medium text-slate-600 hover:text-navbg-dark-navy px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-dark-navy hover:text-white transition-colors duration-200">
+        Sign in
+      </a>
+      <a href="#"
+        class="cta-btn text-center text-[14px] font-medium bg-dark-navy text-white px-4 py-3 rounded-xl hover:bg-vida-orange transition-colors duration-200 tracking-wide">
+        Get started
+      </a>
+    </div>
+  </aside>
+  <!-- header end  -->
+
+  <!-- cm-intro start  -->
+  <section class="cm-intro pt-[72px] md:pt-[190px] lg:pt-[314px] lg:px-14 px-4 bg-dark-navy">
+    <div class="flex flex-col lg:flex-row flex-col justify-between items-start md:items-center h-full lg:gap-10 gap-7">
+      <!-- left content  -->
+      <div class="lg:max-w-[633px]">
+        <h2 class="text-light-gray font-light text-[24px] leading-[40px] lg:text-[45px] lg:leading-[60px]">
+          Ontdek hier onze afgeronde
+          projecten en laat je inspireren
+          door
+          <strong class="font-semibold">Vidastone</strong>
+        </h2>
+      </div>
+      <!-- filter button  -->
+      <div class="w-full md:w-auto">
+        <div
+          class="hidden md:flex flex-row lg:justify-end flex-wrap h-full gap-[10px] lg:w-auto w-full lg:max-w-[545px]">
+          <button
+            data-filter="nieuwbouw"
+            class="filter-btn bg-white/16 border-[0.5px] border-white text-base text-white py-[18px] px-8 rounded-full hover:bg-vida-orange transition-colors duration-300 tracking-wide cursor-pointer">Nieuwbouw</button>
+          <button
+            data-filter="renovatie"
+            class="filter-btn bg-white/16 border-[0.5px] border-white text-base text-white py-[18px] px-8 rounded-full hover:bg-vida-orange transition-colors duration-300 tracking-wide cursor-pointer">Renovatie</button>
+          <button
+            data-filter="uitbreiding"
+            class="filter-btn bg-white/16 border-[0.5px] border-white text-base text-white py-[18px] px-8 rounded-full hover:bg-vida-orange transition-colors duration-300 tracking-wide cursor-pointer">Uitbreiding</button>
+          <button
+            data-filter="utiliteitsbouw"
+            class="filter-btn bg-white/16 border-[0.5px] border-white text-base text-white py-[18px] px-8 rounded-full hover:bg-vida-orange transition-colors duration-300 tracking-wide cursor-pointer">Utiliteitsbouw</button>
+          <button
+            data-filter="verduurzaming"
+            class="filter-btn bg-white/16 border-[0.5px] border-white text-base text-white py-[18px] px-8 rounded-full hover:bg-vida-orange transition-colors duration-300 tracking-wide cursor-pointer">Verduurzaming</button>
+          <!-- default active button  -->
+          <button
+            data-filter="all"
+            class="filter-btn bg-vida-orange border-[0.5px] border-white text-base text-white py-[18px] px-8 rounded-full hover:bg-vida-orange transition-colors duration-300 tracking-wide cursor-pointer">Alle</button>
+        </div>
+        <!-- filter dropdown -->
+        <div class="flex md:hidden w-full relative">
+          <button id="mobile-filter-btn"
+            class="w-auto flex items-center justify-between gap-4 bg-white/16 border-[0.5px] border-white text-base text-white py-[18px] px-8 rounded-full transition-colors duration-300 tracking-wide cursor-pointer focus:outline-none">
+            <span id="mobile-filter-text">Selecteer een categorie</span>
+            <svg id="mobile-filter-arrow" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+              stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-200">
+              <path d="M6 8l4 4 4-4" />
+            </svg>
+          </button>
+          <div id="mobile-filter-dropdown"
+            class="hidden absolute top-full left-0 right-0 mt-2 bg-[#171e23]/90 backdrop-blur-[10px] border-[0.5px] border-white rounded-[20px] shadow-2xl z-20 overflow-hidden">
+            <div class="flex flex-col py-2">
+              <button data-filter="all" class="mobile-filter-opt text-left px-6 py-3.5 text-white hover:bg-vida-orange text-base transition-colors duration-200 bg-transparent cursor-pointer">Alle</button>
+              <button data-filter="nieuwbouw" class="mobile-filter-opt text-left px-6 py-3.5 text-white hover:bg-vida-orange text-base transition-colors duration-200 bg-transparent cursor-pointer">Nieuwbouw</button>
+              <button data-filter="renovatie" class="mobile-filter-opt text-left px-6 py-3.5 text-white hover:bg-vida-orange text-base transition-colors duration-200 bg-transparent cursor-pointer">Renovatie</button>
+              <button data-filter="uitbreiding" class="mobile-filter-opt text-left px-6 py-3.5 text-white hover:bg-vida-orange text-base transition-colors duration-200 bg-transparent cursor-pointer">Uitbreiding</button>
+              <button data-filter="utiliteitsbouw" class="mobile-filter-opt text-left px-6 py-3.5 text-white hover:bg-vida-orange text-base transition-colors duration-200 bg-transparent cursor-pointer">Utiliteitsbouw</button>
+              <button data-filter="verduurzaming" class="mobile-filter-opt text-left px-6 py-3.5 text-white hover:bg-vida-orange text-base transition-colors duration-200 bg-transparent cursor-pointer">Verduurzaming</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- cm-intro end -->
+
+  <!-- cm-projects start  -->
+  <section class="cm-projects lg:pt-20 py-10 lg:pb-7 bg-dark-navy rounded-b-[40px]">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:px-14 px-4 gap-10">
+      <!-- 1 -->
+      <div class="project-card" data-category="nieuwbouw">
+        <a href="" class="relative block group">
+          <img src="./images/Nieuwbouw-pv-01.png" alt="nieuwbouw"
+            class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]" />
+          <div
+            class="absolute bottom-7 left-7 w-[calc(100%-56px)] max-w-[304px] border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+            <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">
+              Nieuwbouw
+            </h4>
+            <p class="text-white lg:text-sm text-xs">
+              In Krimpen aan den IJssel
+            </p>
+          </div>
+        </a>
+      </div>
+      <!-- 2 -->
+      <div class="project-card" data-category="verbouwing">
+        <a href="" class="relative block group">
+          <img src="./images/Verbouwing-pv-02.png" alt="renovatie"
+            class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]" />
+          <div
+            class="absolute bottom-7 left-7 w-[calc(100%-56px)] max-w-[304px] border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+            <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">
+              Verbouwing
+            </h4>
+            <p class="text-white lg:text-sm text-xs">
+              Kantoor VI Company
+            </p>
+          </div>
+        </a>
+      </div>
+      <!-- 3 -->
+      <div class="project-card" data-category="utiliteitsbouw">
+        <a href="" class="relative block group">
+          <img src="./images/Utiliteitsbouw-pv-03.png" alt="utiliteitsbouw"
+            class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]" />
+          <div
+            class="absolute bottom-7 left-7 w-[calc(100%-56px)] max-w-[304px] border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+            <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">
+              Utiliteitsbouw
+            </h4>
+            <p class="text-white lg:text-sm text-xs">
+              In Rotterdam
+            </p>
+          </div>
+        </a>
+      </div>
+      <!-- 4 -->
+      <div class="project-card" data-category="nieuwbouw">
+        <a href="" class="relative block group">
+          <img src="./images/Nieuwbouw-pv-04.png" alt="nieuwbouw"
+            class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]" />
+          <div
+            class="absolute bottom-7 left-7 w-[calc(100%-56px)] max-w-[304px] border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+            <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">
+              Nieuwbouw
+            </h4>
+            <p class="text-white lg:text-sm text-xs">
+              Villa te Capelle
+            </p>
+          </div>
+        </a>
+      </div>
+      <!-- 5 -->
+      <div class="project-card" data-category="verbouwing">
+        <a href="" class="relative block group">
+          <img src="./images/Verbouwing-pv-05.png" alt="verbouwing"
+            class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]" />
+          <div
+            class="absolute bottom-7 left-7 w-[calc(100%-56px)] max-w-[304px] border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+            <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">
+              Verbouwing
+            </h4>
+            <p class="text-white lg:text-sm text-xs">
+Kantoor VI Company
+            </p>
+          </div>
+        </a>
+      </div>
+      <!-- 6 -->
+      <div class="project-card" data-category="utiliteitsbouw">
+        <a href="" class="relative block group">
+          <img src="./images/Utiliteitsbouw-pv-06.png" alt="utiliteitsbouw"
+            class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]" />
+          <div
+            class="absolute bottom-7 left-7 w-[calc(100%-56px)] max-w-[304px] border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+            <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">
+              Utiliteitsbouw
+            </h4>
+            <p class="text-white lg:text-sm text-xs">
+             In Rotterdam
+            </p>
+          </div>
+        </a>
+      </div>
+      <!-- 7 -->
+      <div class="project-card" data-category="nieuwbouw">
+        <a href="" class="relative block group">
+          <img src="./images/Nieuwbouw-pv-07.png" alt="nieuwbouw"
+            class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]" />
+          <div
+            class="absolute bottom-7 left-7 w-[calc(100%-56px)] max-w-[304px] border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+            <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">
+              Nieuwbouw
+            </h4>
+            <p class="text-white lg:text-sm text-xs">
+             In Krimpen aan den IJssel
+            </p>
+          </div>
+        </a>
+      </div>
+      <!-- 8 -->
+      <div class="project-card" data-category="verbouwing">
+        <a href="" class="relative block group">
+          <img src="./images/Verbouwing-pv-08.png" alt="verbouwing"
+            class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]" />
+          <div
+            class="absolute bottom-7 left-7 w-[calc(100%-56px)] max-w-[304px] border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+            <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">
+              Verbouwing
+            </h4>
+            <p class="text-white lg:text-sm text-xs">
+              Woonhuis Delft
+            </p>
+          </div>
+        </a>
+      </div>
+      <!-- 9 -->
+      <div class="project-card" data-category="utiliteitsbouw">
+        <a href="" class="relative block group">
+          <img src="./images/Utiliteitsbouw-pv-09.png" alt="utiliteitsbouw"
+            class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]" />
+          <div
+            class="absolute bottom-7 left-7 w-[calc(100%-56px)] max-w-[304px] border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+            <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">
+              Utiliteitsbouw
+            </h4>
+            <p class="text-white lg:text-sm text-xs">
+              In Rotterdam
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- cm-projects end -->
+
+  <!-- cm footer start  -->
+  <footer class="md:p-7 p-4">
+    <div class="bg-dark-navy text-white px-5 md:px-7 lg:pt-[97px] pt-12 rounded-[30px] pb-7">
+      <!-- footer top  -->
+      <div class="flex lg:flex-row flex-col justify-between items-center lg:gap-12 gap-8">
+        <div class="min-w-[240px]">
+          <a href="index.html"><img src="./images/logo.png" alt="logo" /></a>
+        </div>
+        <!-- bar  -->
+        <div class="w-full">
+          <hr class="w-full h-0.5 bg-vida-orange text-vida-orange" />
+        </div>
+        <!-- icon and cta  -->
+        <div class="flex md:flex-row flex-col items-center gap-12">
+          <ul class="flex flex-row gap-x-12">
+            <li class="text-white text-2xl">
+              <i class="fa-brands fa-facebook-f"></i>
+            </li>
+            <li class="text-white text-2xl">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </li>
+            <li class="text-white text-2xl">
+              <i class="fa-brands fa-instagram"></i>
+            </li>
+          </ul>
+          <div
+            class="flex flex-row items-center justify-center rounded-lg transition-colors cursor-pointer duration-200 text-slate-800">
+            <!-- button  -->
+            <a href="tel:085-4830939" class="flex relative group">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.583 59.999" class="btn-shape w-[186px] h-[60px]">
+                <path
+                  d="M167,66H30A30.008,30.008,0,0,1,18.323,8.358,29.811,29.811,0,0,1,30,6H167a29.982,29.982,0,0,1,25.583,14.324,36.081,36.081,0,0,0,0,31.352A29.982,29.982,0,0,1,167,66Z"
+                  transform="translate(0 -6)" fill="#fff"></path>
+              </svg>
+
+              <div
+                class="absolute top-0 left-0 w-full h-full flex items-center justify-center gap-2 text-dark-navy text-base group-hover:text-white transition-all duration-500 ease-in-out">
+                <span>T. 085 - 4830939</span>
+              </div>
+            </a>
+            <!-- toggle bar  -->
+            <a href="mailto:info@vidastone.nl"
+              class="bg-vida-orange hover:bg-white hover:text-vida-orange border border-vida-orange rounded-full w-[60px] h-[60px] flex items-center justify-center text-white cursor-pointer"><i
+                class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- footer link area start  -->
+      <div
+        class="grid md:grid-cols-3 md:text-start text-center grid-cols-1 gap-14 max-w-[892px] md:mt-[110px] mt-[90px] md:mb-[220px] mb-[100px]">
+        <!-- single item start  -->
+        <div class="col-span-1">
+          <h4 class="font-IvyMode text-[30px] leading-normal mb-2">
+            Adres & contact
+          </h4>
+          <address class="text-base leading-[30px] text-white mb-5">
+            Stormsweg 94 <br />
+            2921 LZ Krimpen a/d IJssel
+          </address>
+          <ul class="text-base leading-[30px] text-white">
+            <li><a href="tel:085-4830939">T. 085 - 4830939</a></li>
+            <li><a href="mailto:info@vidastone.nl">info@vidastone.nl</a></li>
+          </ul>
+        </div>
+        <!-- single item start  -->
+        <div class="col-span-1">
+          <h4 class="font-IvyMode text-[30px] leading-normal mb-2">
+            Diensten
+          </h4>
+          <ul class="flex flex-col gap-1">
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Nieuwbouw
+              </a>
+            </li>
+
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Renovatie</a>
+            </li>
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Uitbreiding</a>
+            </li>
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Utiliteitsbouw</a>
+            </li>
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Vergroening</a>
+            </li>
+          </ul>
+        </div>
+        <!-- single item start  -->
+        <div class="col-span-1">
+          <h4 class="font-IvyMode text-[30px] leading-normal mb-2">
+            Onze websites
+          </h4>
+          <ul class="flex flex-col gap-1">
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Vidabouw
+              </a>
+            </li>
+
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Vidainterieur
+              </a>
+            </li>
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Vidagarden</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- copyright area  -->
+      <div class="flex lg:flex-row flex-col lg:gap-0 gap-10 justify-between items-center">
+        <p class="text-sm leading-[30px] text-white">
+          Ontwerp en ontwikkeling Brand Boosters © 2025
+        </p>
+        <ul class="flex flex-row items-center gap-2 text-sm leading-[30px] text-white">
+          <li>
+            <a href="" class="hover:text-vida-orange transition-all ease-linear duration-200">Privacy
+            </a>
+          </li>
+          <li>|</li>
+          <li>
+            <a href="" class="hover:text-vida-orange transition-all ease-linear duration-200">Algemene voorwaarden
+            </a>
+          </li>
+          <li>|</li>
+          <li>
+            <a href="" class="hover:text-vida-orange transition-all ease-linear duration-200">
+              Cookiebeleid</a>
+          </li>
+        </ul>
+        <div class="">
+          <a href=""><img src="./images/footer-image.png" alt="footer-image" /></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- cm footer end  -->
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+
+  <script src="https://unpkg.com/lenis@1.3.13/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+  <script defer src=" ./js/index.js"></script>
+  <script>
+    new Swiper(".swiper", {
+      spaceBetween: 28,
+      grabCursor: true,
+      // Mobile: 1 slide visible with a peek of the next
+      slidesPerView: 1.3,
+      breakpoints: {
+        // md (768px+): show all 3, no swiping
+        768: {
+          slidesPerView: 3,
+          centeredSlides: false,
+          allowTouchMove: false,
+          grabCursor: false,
+        },
+      },
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const desktopButtons = document.querySelectorAll(".filter-btn");
+      const mobileFilterBtn = document.getElementById("mobile-filter-btn");
+      const mobileFilterDropdown = document.getElementById("mobile-filter-dropdown");
+      const mobileFilterText = document.getElementById("mobile-filter-text");
+      const mobileFilterArrow = document.getElementById("mobile-filter-arrow");
+      const mobileOptions = document.querySelectorAll(".mobile-filter-opt");
+      const cards = document.querySelectorAll(".project-card");
+
+      // Handle card visibility based on active filter
+      function applyFilter(filterValue) {
+        const cardsToHide = [];
+        const cardsToShow = [];
+
+        cards.forEach(card => {
+          const cardCategory = card.getAttribute("data-category");
+          const shouldShow = filterValue === "all" || cardCategory === filterValue;
+          if (shouldShow) {
+            cardsToShow.push(card);
+          } else {
+            cardsToHide.push(card);
+          }
+        });
+
+        // 1. Record "First" positions of cards that will remain visible
+        const firstPositions = new Map();
+        cardsToShow.forEach(card => {
+          if (!card.classList.contains("hidden")) {
+            const rect = card.getBoundingClientRect();
+            firstPositions.set(card, { left: rect.left, top: rect.top });
+          }
+        });
+
+        // 2. Animate out the cards that need to be hidden
+        const hidePromises = cardsToHide.map(card => {
+          if (!card.classList.contains("hidden")) {
+            return new Promise(resolve => {
+              gsap.to(card, {
+                duration: 0.25,
+                opacity: 0,
+                scale: 0.85,
+                y: -15,
+                ease: "power2.inOut",
+                onComplete: () => {
+                  card.classList.add("hidden");
+                  resolve();
+                }
+              });
+            });
+          } else {
+            card.classList.add("hidden");
+            return Promise.resolve();
+          }
+        });
+
+        // 3. Wait for hide animations to finish, then position and slide remaining cards
+        Promise.all(hidePromises).then(() => {
+          // Make sure all target cards are shown in the layout flow
+          cardsToShow.forEach(card => {
+            card.classList.remove("hidden");
+          });
+
+          // Measure "Last" positions of the shown cards
+          const deltas = [];
+          cardsToShow.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const first = firstPositions.get(card);
+            
+            if (first) {
+              const deltaX = first.left - rect.left;
+              const deltaY = first.top - rect.top;
+              deltas.push({ card, deltaX, deltaY, isNew: false });
+            } else {
+              deltas.push({ card, deltaX: 0, deltaY: 0, isNew: true });
+            }
+          });
+
+          // Invert and animate
+          deltas.forEach(({ card, deltaX, deltaY, isNew }) => {
+            if (isNew) {
+              // Fade in new card with a beautiful springy ease
+              gsap.fromTo(card,
+                { opacity: 0, scale: 0.85, y: 15 },
+                { duration: 0.45, opacity: 1, scale: 1, y: 0, ease: "back.out(1.1)", clearProps: "all" }
+              );
+            } else if (deltaX !== 0 || deltaY !== 0) {
+              // Smoothly slide card from old position (deltaX, deltaY) to new (0, 0)
+              gsap.fromTo(card,
+                { x: deltaX, y: deltaY, opacity: 1, scale: 1 },
+                { duration: 0.55, x: 0, y: 0, ease: "power3.out", clearProps: "transform" }
+              );
+            } else {
+              // Restore scale and opacity to normal if already visible at correct position
+              gsap.to(card, { duration: 0.3, opacity: 1, scale: 1, ease: "power2.out", clearProps: "opacity,scale" });
+            }
+          });
+        });
+
+        // Update Desktop buttons active style
+        desktopButtons.forEach(btn => {
+          const btnFilter = btn.getAttribute("data-filter");
+          if (btnFilter === filterValue) {
+            btn.classList.add("bg-vida-orange");
+            btn.classList.remove("bg-white/16");
+          } else {
+            btn.classList.remove("bg-vida-orange");
+            btn.classList.add("bg-white/16");
+          }
+        });
+
+        // Update Mobile filter text
+        const matchedOpt = Array.from(mobileOptions).find(opt => opt.getAttribute("data-filter") === filterValue);
+        if (matchedOpt) {
+          if (filterValue === "all") {
+            mobileFilterText.textContent = "Selecteer een categorie";
+          } else {
+            mobileFilterText.textContent = matchedOpt.textContent;
+          }
+        }
+      }
+
+      // Add click events to desktop filter buttons
+      desktopButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const filterValue = btn.getAttribute("data-filter");
+          applyFilter(filterValue);
+        });
+      });
+
+      // Toggle mobile dropdown
+      if (mobileFilterBtn) {
+        mobileFilterBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isHidden = mobileFilterDropdown.classList.contains("hidden");
+          if (isHidden) {
+            mobileFilterDropdown.classList.remove("hidden");
+            mobileFilterArrow.classList.add("rotate-180");
+          } else {
+            mobileFilterDropdown.classList.add("hidden");
+            mobileFilterArrow.classList.remove("rotate-180");
+          }
+        });
+      }
+
+      // Add click events to mobile options
+      mobileOptions.forEach(opt => {
+        opt.addEventListener("click", () => {
+          const filterValue = opt.getAttribute("data-filter");
+          applyFilter(filterValue);
+          mobileFilterDropdown.classList.add("hidden");
+          mobileFilterArrow.classList.remove("rotate-180");
+        });
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", () => {
+        if (mobileFilterDropdown && !mobileFilterDropdown.classList.contains("hidden")) {
+          mobileFilterDropdown.classList.add("hidden");
+          mobileFilterArrow.classList.remove("rotate-180");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

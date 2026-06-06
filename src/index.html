@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vida Stone</title>
+  <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+
+  <!-- google font  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+
+  <!-- Font-awesome font icon cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- swiper js  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+
+  <link rel="stylesheet" href="./css/style.min.css">
+  <!-- <link rel="stylesheet" href="./input-css/input.css" /> -->
+</head>
+
+<body class="relative ">
+
+  <!-- header start  -->
+  <header id="main-header"
+    class="md:fixed sticky top-0 left-0 right-0 z-50 md:bg-transparent bg-dark-navy xl:px-[27px] xl:pt-[27px] transition-all duration-300 ease-linear">
+    <div class="md:px-[27px] md:py-[29px] p-4 hd-inner">
+      <div class="flex items-center justify-between h-16 lg:h-18">
+
+        <!-- LEFT — Logo -->
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <img src="./images/logo.png" alt="logo" class="md:w-auto w-[190px]">
+        </a>
+
+        <!-- CENTER — Desktop Nav -->
+        <nav
+          class="hidden xl:flex items-center gap-8 rounded-[30px]  backdrop-blur-[10%] backdrop-opacity-0  backdrop-brightness-200 bg-[#85796B]/80 px-8 py-5"
+          aria-label="Main navigation">
+          <a href="#"
+            class="nav-link-desktop text-pure-white text-base leading-[22px] hover:text-vida-orange transition-colors duration-200">Products</a>
+          <a href="#"
+            class="nav-link-desktop text-pure-white text-base leading-[22px] hover:text-vida-orange transition-colors duration-200">Solutions</a>
+          <a href="#"
+            class="nav-link-desktop text-pure-white text-base leading-[22px] hover:text-vida-orange transition-colors duration-200">Pricing</a>
+          <a href="#"
+            class="nav-link-desktop text-pure-white text-base leading-[22px] hover:text-vida-orange transition-colors duration-200">Resources</a>
+          <a href="#"
+            class="nav-link-desktop text-pure-white text-base leading-[22px] hover:text-vida-orange transition-colors duration-200">Company</a>
+        </nav>
+
+        <!-- RIGHT — Desktop CTA -->
+        <div class="flex items-center gap-3">
+          <!--  toggle -->
+
+          <div
+            class="flex flex-row items-center justify-center rounded-lg transition-colors cursor-pointer duration-200 text-slate-800">
+            <!-- button  -->
+            <a href="contant-us.html" class="lg:flex hidden relative group">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.583 59.999" class="btn-shape w-[197px] h-[60px]">
+                <path
+                  d="M167,66H30A30.008,30.008,0,0,1,18.323,8.358,29.811,29.811,0,0,1,30,6H167a29.982,29.982,0,0,1,25.583,14.324,36.081,36.081,0,0,0,0,31.352A29.982,29.982,0,0,1,167,66Z"
+                  transform="translate(0 -6)" fill="#fff" />
+              </svg>
+
+              <div
+                class="absolute top-0 left-0 w-full h-full flex items-center justify-center gap-2 text-dark-navy text-base group-hover:text-white  transition-all duration-500 ease-in-out">
+                <span>Offerte aanvragen</span>
+              </div>
+            </a>
+            <!-- toggle bar  -->
+            <button id="menu-toggle"
+              class="bg-vida-orange hover:bg-white hover:text-vida-orange border border-vida-orange rounded-full w-[60px] h-[60px] flex items-center justify-center text-white cursor-pointer"
+              aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-drawer"><i
+                class="fa-classic fa-solid fa-bars-staggered"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!--   backdrop  -->
+  <div id="backdrop" class="fixed inset-0 z-50 bg-dark-navy/30 backdrop-blur-[2px]" aria-hidden="true"></div>
+
+  <!--  offcanvas  -->
+  <aside id="mobile-drawer" class="fixed top-0 right-0 z-50 h-full w-[400px] bg-white shadow-2xl flex flex-col"
+    role="dialog" aria-modal="true" aria-label="Mobile navigation">
+
+    <!-- Drawer header -->
+    <div class="flex items-center justify-between px-4 py-4 border-b border-slate-100 bg-dark-navy">
+      <a href="#" class="flex items-center gap-2.5 ">
+        <img src="./images/logo.png" alt="logo" class="w-[190px]">
+      </a>
+      <button id="drawer-close"
+        class="w-9 h-9 rounded-lg hover:bg-slate-100 flex items-center justify-center text-white hover:text-navbg-dark-navy transition-colors duration-200 cursor-pointer"
+        aria-label="Close menu">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75"
+          stroke-linecap="round">
+          <path d="M3 3l10 10M13 3L3 13" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Nav links -->
+    <nav class="flex flex-col px-4 pt-6 gap-1 flex-1" aria-label="Mobile navigation">
+      <a href="#"
+        class="nav-link-mobile flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 hover:text-navbg-dark-navy hover:bg-slate-50 text-[15px] font-medium transition-colors duration-200 group">
+        <span class="text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="7" height="7" rx="1.5" />
+            <rect x="11" y="2" width="7" height="7" rx="1.5" />
+            <rect x="2" y="11" width="7" height="7" rx="1.5" />
+            <rect x="11" y="11" width="7" height="7" rx="1.5" />
+          </svg>
+        </span>
+        Products
+      </a>
+      <a href="#"
+        class="nav-link-mobile flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 hover:text-navbg-dark-navy hover:bg-slate-50 text-[15px] font-medium transition-colors duration-200 group">
+        <span class="text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 2L2 7l8 5 8-5-8-5zM2 13l8 5 8-5M2 10l8 5 8-5" />
+          </svg>
+        </span>
+        Solutions
+      </a>
+      <a href="#"
+        class="nav-link-mobile flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 hover:text-navbg-dark-navy hover:bg-slate-50 text-[15px] font-medium transition-colors duration-200 group">
+        <span class="text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 10h14M3 6h14M3 14h9" />
+            <circle cx="16" cy="14" r="2.5" />
+          </svg>
+        </span>
+        Pricing
+      </a>
+      <a href="#"
+        class="nav-link-mobile flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 hover:text-navbg-dark-navy hover:bg-slate-50 text-[15px] font-medium transition-colors duration-200 group">
+        <span class="text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h12v12H4z" />
+            <path d="M8 8h4M8 12h2" />
+          </svg>
+        </span>
+        Resources
+      </a>
+      <a href="#"
+        class="nav-link-mobile flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-700 hover:text-navbg-dark-navy hover:bg-slate-50 text-[15px] font-medium transition-colors duration-200 group">
+        <span class="text-slate-400 group-hover:text-slate-600 transition-colors duration-200">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="7" r="3" />
+            <path d="M4 18c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+          </svg>
+        </span>
+        Company
+      </a>
+    </nav>
+
+    <!-- CTA section -->
+    <div class="cta-mobile px-4 pb-8 pt-4 flex flex-col gap-3 border-t border-slate-100 mt-2">
+      <a href="#"
+        class="text-center text-[14px] font-medium text-slate-600 hover:text-navbg-dark-navy px-4 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-dark-navy hover:text-white transition-colors duration-200">
+        Sign in
+      </a>
+      <a href="#"
+        class="cta-btn text-center text-[14px] font-medium bg-dark-navy text-white px-4 py-3 rounded-xl hover:bg-vida-orange transition-colors duration-200 tracking-wide">
+        Get started
+      </a>
+    </div>
+  </aside>
+  <!-- header end  -->
+
+
+  <!-- cm-hero start  -->
+  <section class="md:p-7 p-4 bg-dark-navy ">
+    <div
+      class="xl:bg-[url('../images/hero-image.png')] xl:bg-cover xl:bg-center relative rounded-[30px] h-full flex items-end justify-start xl:p-7 xl:before:content-[''] xl:before:absolute xl:before:inset-0 xl:before:bg-black/20 xl:before:-z-10 z-10 xl:before:rounded-[30px] min-h-[calc(100vh-56px)]">
+      <div class="flex xl:flex-row flex-col xl:justify-between xl:items-end md:pt-32 w-full h-full">
+        <!-- left item start  -->
+        <div
+          class="xl:bg-none bg-[url('../images/hero-image.png')] bg-cover bg-center relative xl:rounded-none rounded-[30px] xl:p-0 p-5 xl:min-h-auto md:min-h-[650px] min-h-[460px] xl:block flex justify-start items-end xl:mb-0 md:mb-10 mb-4 xl:static before:content-[''] before:absolute before:inset-0 before:bg-black/20 before:-z-10 z-10 before:rounded-[30px]">
+          <div class="flex flex-col gap-[90px] ">
+            <div class="flex flex-col gap-3">
+              <h1 class="font-IvyMode md:text-[80px] text-[40px] md:leading-[85px] leading-[45px] text-white">De basis
+                van <br> kwaliteit</h1>
+              <p class="md:text-lg text-sm text-white">Gebouwd op kennis, ervaring en precisie</p>
+            </div>
+            <ul class="md:flex flex-row flex-wrap gap-2.5 max-w-[450px]  hidden">
+              <li>
+                <a href=""
+                  class="border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] h-[60px] backdrop-blur-[10px] text-white px-[30px] py-4 inline-flex hover:bg-vida-orange/50">Nieuwbouw</a>
+              </li>
+
+              <li>
+                <a href=""
+                  class="border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] h-[60px] backdrop-blur-[10px] text-white px-[30px] py-4 inline-flex hover:bg-vida-orange/50">Renovatie</a>
+              </li>
+              <li>
+                <a href=""
+                  class="border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] h-[60px] backdrop-blur-[10px] text-white px-[30px] py-4 inline-flex hover:bg-vida-orange/50">Uitbreiding</a>
+              </li>
+              <li>
+                <a href=""
+                  class="border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] h-[60px] backdrop-blur-[10px] text-white px-[30px] py-4 inline-flex hover:bg-vida-orange/50">Utiliteitsbouw</a>
+              </li>
+              <li>
+                <a href=""
+                  class="border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] h-[60px] backdrop-blur-[10px] text-white px-[30px] py-4 inline-flex hover:bg-vida-orange/50">Verduurzaming</a>
+              </li>
+            </ul>
+
+          </div>
+
+        </div>
+        <!-- right side item start  -->
+        <div class="2xl:max-w-[875px] xl:max-w-[720px] grid md:grid-cols-2 grid-cols-1 md:gap-7 gap-4 relative z-10">
+          <!-- single item start  -->
+          <div
+            class="grid grid-cols-2 p-3 border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px]">
+            <div class="">
+              <img src="./images/Nieuwbouw.png" alt="Nieuwbouw"
+                class="w-full h-[194px] object-cover object-center rounded-2xl">
+            </div>
+            <div class="h-full flex flex-col justify-between pl-5">
+              <div class="pt-3 flex flex-col gap-2">
+                <h3 class="texth3hite text-lg font-bold leading-[24px] text-white">Nieuwbouw</h3>
+                <p class="text-white text-[13px]">Ondertitel</p>
+              </div>
+              <div class="pb-3 flex justify-end">
+                <a href=""
+                  class="w-12 h-12 rounded-full bg-vida-orange flex justify-center items-center text-white"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                    class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+          <!-- single item end -->
+
+          <!-- single item start  -->
+          <div
+            class="grid grid-cols-2 p-3 border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px]">
+            <div class="">
+              <img src="./images/Renovatie.png" alt="Renovatie"
+                class="w-full h-[194px] object-cover object-center rounded-2xl">
+            </div>
+            <div class="h-full flex flex-col justify-between pl-5">
+              <div class="pt-3 flex flex-col gap-2">
+                <h3 class="texth3hite text-lg font-bold leading-[24px] text-white">Renovatie</h3>
+                <p class="text-white text-[13px]">Ondertitel</p>
+              </div>
+              <div class="pb-3 flex justify-end">
+                <a href=""
+                  class="w-12 h-12 rounded-full bg-vida-orange flex justify-center items-center text-white"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                    class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+          <!-- single item end -->
+
+        </div>
+        <!-- right side item end -->
+      </div>
+    </div>
+
+  </section>
+  <!-- cm-hero end -->
+
+
+
+  <!-- cm-intro start  -->
+  <section class="cm-intro py-[80px] md:py-[156px] md:px-14 px-4 bg-dark-navy">
+    <div class="flex lg:flex-row flex-col justify-between items-center h-full lg:gap-10 gap-6">
+      <!-- title and cta start  -->
+      <div class="flex flex-col lg:justify-between h-full gap-10 lg:min-h-[240px] lg:w-auto w-full">
+        <h4 class="text-white">Wij zijn Vidastone</h4>
+        <div class="lg:block hidden">
+          <a href=""
+            class="flex flex-row items-center justify-center rounded-lg transition-colors cursor-pointer duration-200 text-slate-800 group">
+            <!-- button  -->
+            <span href="contant-us.html" class="flex relative group">
+              <svg xmlns="http://www.w3.org/2000/svg" class="btn-shape w-[155px] h-[60px]" viewBox="0 0 155.52 59.999">
+                <path id="Subtraction_1" data-name="Subtraction 1"
+                  d="M129.424,60H30A30.008,30.008,0,0,1,18.323,2.357,29.812,29.812,0,0,1,30,0h99.424a29.988,29.988,0,0,1,26.1,15.191A42.97,42.97,0,0,0,152.949,30a42.97,42.97,0,0,0,2.571,14.808A29.988,29.988,0,0,1,129.424,60Z"
+                  fill="#fff" />
+              </svg>
+
+
+              <div
+                class="absolute top-0 left-0 w-full h-full flex items-center justify-center gap-2 text-dark-navy text-base group-hover:text-white  transition-all duration-500 ease-in-out">
+                <span>Verder lezen</span>
+              </div>
+            </span>
+            <!-- arrow  -->
+            <span
+              class="bg-vida-orange group-hover:bg-white group-hover:text-vida-orange border border-vida-orange rounded-full w-[60px] h-[60px] flex items-center justify-center text-white cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+      <!-- right content  -->
+      <div class="max-w-[975px]">
+        <h2 class="text-light-gray font-light text-[24px] leading-[40px] lg:text-[45px] lg:leading-[60px]"><strong
+            class="font-semibold">Vidastone</strong>
+          is een betrouwbare
+          bouwpartner
+          voor <strong class="font-semibold">nieuwbouw, renovatie</strong> en <strong
+            class="font-semibold">verduurzaming</strong>,
+          met focus op kwaliteit, vakmanschap <br class="lg:block hidden"> en
+          heldere communicatie.</h2>
+        <div class="lg:hidden block lg:mt-0 mt-8">
+          <a href=""
+            class="flex flex-row items-center justify-start rounded-lg transition-colors cursor-pointer duration-200 text-slate-800 group">
+            <!-- button  -->
+            <span href="contant-us.html" class="flex relative group">
+              <svg xmlns="http://www.w3.org/2000/svg" class="btn-shape w-[155px] h-[60px]" viewBox="0 0 155.52 59.999">
+                <path id="Subtraction_1" data-name="Subtraction 1"
+                  d="M129.424,60H30A30.008,30.008,0,0,1,18.323,2.357,29.812,29.812,0,0,1,30,0h99.424a29.988,29.988,0,0,1,26.1,15.191A42.97,42.97,0,0,0,152.949,30a42.97,42.97,0,0,0,2.571,14.808A29.988,29.988,0,0,1,129.424,60Z"
+                  fill="#fff" />
+              </svg>
+
+
+              <div
+                class="absolute top-0 left-0 w-full h-full flex items-center justify-center gap-2 text-dark-navy text-base group-hover:text-white  transition-all duration-500 ease-in-out">
+                <span>Verder lezen</span>
+              </div>
+            </span>
+            <!-- arrow  -->
+            <span
+              class="bg-vida-orange group-hover:bg-white group-hover:text-vida-orange border border-vida-orange rounded-full w-[60px] h-[60px] flex items-center justify-center text-white cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- cm-intro end -->
+
+
+  <!-- cm-projects-highlighted start  -->
+  <section class="cm-projects-highlighted  lg:pt-20 py-10  lg:pb-7 bg-dark-navy rounded-b-[40px]">
+    <div class="flex flex-row justify-between items-center w-full lg:mb-11 mb-7 lg:px-7 px-4">
+      <h2 class="text-white text-[40px] lg:text-[60px] leading-[55px] lg:leading-[85px] font-IvyMode">Projecten in beeld
+      </h2>
+      <div class="md:block hidden">
+        <a href=""
+          class="flex flex-row items-center justify-start rounded-lg transition-colors cursor-pointer duration-200 text-slate-800 group">
+          <!-- button  -->
+          <span href="contant-us.html" class="flex relative group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="btn-shape w-[160px] h-[60px]" viewBox="0 0 155.52 59.999">
+              <path id="Subtraction_1" data-name="Subtraction 1"
+                d="M129.424,60H30A30.008,30.008,0,0,1,18.323,2.357,29.812,29.812,0,0,1,30,0h99.424a29.988,29.988,0,0,1,26.1,15.191A42.97,42.97,0,0,0,152.949,30a42.97,42.97,0,0,0,2.571,14.808A29.988,29.988,0,0,1,129.424,60Z"
+                fill="#fff" />
+            </svg>
+
+
+            <div
+              class="absolute top-0 left-0 w-full h-full flex items-center justify-center gap-2 text-dark-navy text-base group-hover:text-white  transition-all duration-500 ease-in-out">
+              <span>Alle projecten</span>
+            </div>
+          </span>
+          <!-- arrow  -->
+          <span
+            class="bg-vida-orange group-hover:bg-white group-hover:text-vida-orange border border-vida-orange rounded-full w-[60px] h-[60px] flex items-center justify-center text-white cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+              class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    <!-- product card area  -->
+    <div class="md:px-7 pl-4">
+      <div class="swiper ">
+        <div class="swiper-wrapper">
+
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <a href="" class="relative block group">
+              <img src="./images/Nieuwbouw-slider.png" alt="nieuwbouw"
+                class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]">
+              <div
+                class="absolute bottom-7 left-7 border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white md:max-w-[304px] max-w-[226px] w-full lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+                <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">Nieuwbouw</h4>
+                <p class="text-white lg:text-sm text-xs">In Krimpen aan den IJssel</p>
+              </div>
+            </a>
+          </div>
+
+
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <a href="" class="relative block group">
+              <img src="./images/Verbouwing-slider.png" alt="Verbouwing"
+                class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]">
+              <div
+                class="absolute bottom-7 left-7 border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white md:max-w-[304px] max-w-[226px] w-full lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+                <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">Verbouwing</h4>
+                <p class="text-white lg:text-sm text-xs">Kantoor VI Company</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <a href="" class="relative block group">
+              <img src="./images/Utiliteitsbouw-slider.png" alt="Utiliteitsbouw"
+                class="w-full object-cover object-center 2xl:min-h-[768px] xl:min-h-[600px] lg:min-h-[500px] md:min-h-[400px] min-h-[382px] rounded-[30px]">
+              <div
+                class="absolute bottom-7 left-7 border border-white rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px] text-white md:max-w-[304px] max-w-[226px] w-full lg:px-5 lg:py-6 p-5 group-hover:bg-vida-orange transition-all ease-linear duration-200">
+                <h4 class="text-white text-[28px] lg:text-[30px] leading-[35px] font-IvyMode mb-1.5">Utiliteitsbouw</h4>
+                <p class="text-white lg:text-sm text-xs">In Rotterdam</p>
+              </div>
+            </a>
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class="md:hidden block px-4 pt-10">
+      <a href=""
+        class="flex flex-row items-center justify-start rounded-lg transition-colors cursor-pointer duration-200 text-slate-800 group">
+        <!-- button  -->
+        <span href="contant-us.html" class="flex relative group">
+          <svg xmlns="http://www.w3.org/2000/svg" class="btn-shape w-[160px] h-[60px]" viewBox="0 0 155.52 59.999">
+            <path id="Subtraction_1" data-name="Subtraction 1"
+              d="M129.424,60H30A30.008,30.008,0,0,1,18.323,2.357,29.812,29.812,0,0,1,30,0h99.424a29.988,29.988,0,0,1,26.1,15.191A42.97,42.97,0,0,0,152.949,30a42.97,42.97,0,0,0,2.571,14.808A29.988,29.988,0,0,1,129.424,60Z"
+              fill="#fff" />
+          </svg>
+
+
+          <div
+            class="absolute top-0 left-0 w-full h-full flex items-center justify-center gap-2 text-dark-navy text-base group-hover:text-white  transition-all duration-500 ease-in-out">
+            <span>Alle projecten</span>
+          </div>
+        </span>
+        <!-- arrow  -->
+        <span
+          class="bg-vida-orange group-hover:bg-white group-hover:text-vida-orange border border-vida-orange rounded-full w-[60px] h-[60px] flex items-center justify-center text-white cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+            class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z" />
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+  <!-- cm-projects-highlighted end -->
+
+
+
+
+
+  <!-- cm footer start  -->
+  <footer class=" md:p-7 p-4 ">
+    <div class="bg-dark-navy text-white px-5 md:px-7 lg:pt-[97px] pt-12 rounded-[30px] pb-7">
+      <!-- footer top  -->
+      <div class="flex lg:flex-row flex-col justify-between items-center lg:gap-12 gap-8">
+        <div class="min-w-[240px]">
+          <a href="index.html"><img src="./images/logo.png" alt="logo"></a>
+        </div>
+        <!-- bar  -->
+        <div class="w-full">
+          <hr class="w-full h-0.5 bg-vida-orange text-vida-orange">
+        </div>
+        <!-- icon and cta  -->
+        <div class="flex md:flex-row flex-col items-center gap-12">
+          <ul class="flex flex-row gap-x-12">
+            <li class="text-white text-2xl"><i class="fa-brands fa-facebook-f"></i></li>
+            <li class="text-white text-2xl"><i class="fa-brands fa-linkedin-in"></i></li>
+            <li class="text-white text-2xl"><i class="fa-brands fa-instagram"></i></li>
+          </ul>
+          <div
+            class="flex flex-row items-center justify-center rounded-lg transition-colors cursor-pointer duration-200 text-slate-800 ">
+            <!-- button  -->
+            <a href="tel:085-4830939" class="flex relative group">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.583 59.999" class="btn-shape w-[186px] h-[60px]">
+                <path
+                  d="M167,66H30A30.008,30.008,0,0,1,18.323,8.358,29.811,29.811,0,0,1,30,6H167a29.982,29.982,0,0,1,25.583,14.324,36.081,36.081,0,0,0,0,31.352A29.982,29.982,0,0,1,167,66Z"
+                  transform="translate(0 -6)" fill="#fff"></path>
+              </svg>
+
+              <div
+                class="absolute top-0 left-0 w-full h-full flex items-center justify-center gap-2 text-dark-navy text-base group-hover:text-white  transition-all duration-500 ease-in-out">
+                <span>T. 085 - 4830939</span>
+              </div>
+            </a>
+            <!-- toggle bar  -->
+            <a href="mailto:info@vidastone.nl"
+              class="bg-vida-orange hover:bg-white hover:text-vida-orange border border-vida-orange rounded-full w-[60px] h-[60px] flex items-center justify-center text-white cursor-pointer"><i
+                class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- footer link area start  -->
+      <div
+        class="grid md:grid-cols-3 md:text-start text-center grid-cols-1 gap-14 max-w-[892px] md:mt-[110px] mt-[90px] md:mb-[220px] mb-[100px]">
+        <!-- single item start  -->
+        <div class="col-span-1">
+          <h4 class="font-IvyMode text-[30px] leading-normal mb-2">Adres & contact</h4>
+          <address class="text-base leading-[30px] text-white mb-5">Stormsweg 94 <br>
+            2921 LZ Krimpen a/d IJssel
+          </address>
+          <ul class="text-base leading-[30px] text-white">
+            <li><a href="tel:085-4830939">T. 085 - 4830939</a></li>
+            <li><a href="mailto:info@vidastone.nl">info@vidastone.nl</a></li>
+          </ul>
+        </div>
+        <!-- single item start  -->
+        <div class="col-span-1">
+          <h4 class="font-IvyMode text-[30px] leading-normal mb-2">Diensten</h4>
+          <ul class="flex flex-col gap-1">
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Nieuwbouw
+              </a>
+            </li>
+
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Renovatie</a>
+            </li>
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Uitbreiding</a>
+            </li>
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Utiliteitsbouw</a>
+            </li>
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Vergroening</a>
+            </li>
+
+          </ul>
+        </div>
+        <!-- single item start  -->
+        <div class="col-span-1">
+          <h4 class="font-IvyMode text-[30px] leading-normal mb-2">Onze websites</h4>
+          <ul class="flex flex-col gap-1">
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Vidabouw
+              </a>
+            </li>
+
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Vidainterieur
+              </a>
+            </li>
+            <li>
+              <a href=""
+                class="text-base leading-[30px] text-white hover:text-vida-orange transition-all duration-200 ease-linear">Vidagarden</a>
+            </li>
+
+
+          </ul>
+        </div>
+      </div>
+      <!-- copyright area  -->
+      <div class="flex lg:flex-row flex-col lg:gap-0 gap-10 justify-between items-center">
+        <p class="text-sm leading-[30px] text-white">Ontwerp en ontwikkeling Brand Boosters © 2025</p>
+        <ul class="flex flex-row items-center gap-2 text-sm leading-[30px] text-white">
+          <li><a href="" class="hover:text-vida-orange transition-all ease-linear duration-200">Privacy </a>
+          </li>
+          <li>|</li>
+          <li><a href="" class="hover:text-vida-orange transition-all ease-linear duration-200">Algemene
+              voorwaarden
+            </a></li>
+          <li>|</li>
+          <li><a href="" class="hover:text-vida-orange transition-all ease-linear duration-200">
+              Cookiebeleid</a></li>
+        </ul>
+        <div class="">
+          <a href=""><img src="./images/footer-image.png" alt="footer-image"></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- cm footer end  -->
+
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+
+  <script src="https://unpkg.com/lenis@1.3.13/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+  <script defer src=" ./js/index.js"></script>
+  <script>
+    new Swiper('.swiper', {
+      spaceBetween: 28,
+      grabCursor: true,
+      // Mobile: 1 slide visible with a peek of the next
+      slidesPerView: 1.3,
+      breakpoints: {
+        // md (768px+): show all 3, no swiping
+        768: {
+          slidesPerView: 3,
+          centeredSlides: false,
+          allowTouchMove: false,
+          grabCursor: false,
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
