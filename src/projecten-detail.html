@@ -186,7 +186,7 @@
   <!-- cm-images start  -->
   <section class="md:p-7 p-4 bg-dark-navy ">
     <div id="detail-hero-container"
-      class="relative rounded-[30px] h-full flex items-end justify-start xl:p-7 z-10 overflow-hidden lg:min-h-[calc(100vh-56px)] min-h-[186px]">
+      class="relative rounded-[30px] h-full flex items-end justify-start xl:p-7 z-10 overflow-hidden lg:min-h-[calc(100vh-56px)] min-h-[186px] bg-dark-navy">
       <!-- Background Layers for true crossfade -->
       <div id="bg-active" class="absolute inset-0 bg-[url('../images/details-projects-bg.png')] bg-cover bg-center -z-20"></div>
       <div id="bg-incoming" class="absolute inset-0 bg-cover bg-center opacity-0 -z-20"></div>
@@ -537,8 +537,11 @@
             <path d="M5 9h2a2 2 0 0 0 2 -2v-2" />
           </svg>`;
 
+      let isAnimating = false;
+
       function updateBackground(index) {
-        if (!bgActive || !bgIncoming) return;
+        if (!bgActive || !bgIncoming || isAnimating) return;
+        isAnimating = true;
         currentIndex = index;
 
         const nextImageUrl = images[currentIndex];
@@ -550,13 +553,14 @@
         gsap.fromTo(bgIncoming,
           { opacity: 0, scale: 1.06 },
           {
-            duration: 0.75,
+            duration: 0.55,
             opacity: 1,
             scale: 1,
             ease: "power2.out",
             onComplete: () => {
               bgActive.style.backgroundImage = `url('${nextImageUrl}')`;
               gsap.set(bgIncoming, { opacity: 0 });
+              isAnimating = false;
             }
           }
         );
@@ -565,7 +569,7 @@
         gsap.fromTo(bgActive,
           { opacity: 1, scale: 1 },
           {
-            duration: 0.75,
+            duration: 0.55,
             opacity: 0.3,
             scale: 0.95,
             ease: "power2.out",
@@ -578,6 +582,7 @@
 
       if (prevBtn) {
         prevBtn.addEventListener("click", () => {
+          if (isAnimating) return;
           let newIndex = currentIndex - 1;
           if (newIndex < 0) {
             newIndex = images.length - 1;
@@ -588,6 +593,7 @@
 
       if (nextBtn) {
         nextBtn.addEventListener("click", () => {
+          if (isAnimating) return;
           let newIndex = currentIndex + 1;
           if (newIndex >= images.length) {
             newIndex = 0;
@@ -614,7 +620,7 @@
 
           // 2. Change: Go fullscreen fixed overlay
           heroContainer.classList.remove("relative", "rounded-[30px]", "lg:min-h-[calc(100vh-56px)]", "min-h-[186px]");
-          heroContainer.classList.add("fixed", "inset-0", "z-50", "w-screen", "h-screen", "rounded-none");
+          heroContainer.classList.add("fixed", "inset-0", "z-[100]", "w-screen", "h-screen", "rounded-none", "bg-dark-navy");
           document.body.classList.add("overflow-hidden");
           fullscreenBtn.innerHTML = minimizeSvg;
           isZoomed = true;
@@ -654,7 +660,7 @@
           const firstRectZoomed = heroContainer.getBoundingClientRect();
 
           // 2. Change: Restore normal layout state
-          heroContainer.classList.remove("fixed", "inset-0", "z-50", "w-screen", "h-screen", "rounded-none");
+          heroContainer.classList.remove("fixed", "inset-0", "z-[100]", "w-screen", "h-screen", "rounded-none", "bg-dark-navy");
           heroContainer.classList.add("relative", "rounded-[30px]", "lg:min-h-[calc(100vh-56px)]", "min-h-[186px]");
           document.body.classList.remove("overflow-hidden");
           fullscreenBtn.innerHTML = maximizeSvg;
