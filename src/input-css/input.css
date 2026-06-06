@@ -150,3 +150,209 @@ a:hover .btn-shape path {
   .lenis.lenis-stopped {
     overflow: hidden;
   }
+
+/* ── Page Reveal Animations ── */
+
+/* Initial hidden state — elements start here, GSAP animates them in */
+.will-reveal {
+  opacity: 0;
+  transform: translateY(44px);
+  will-change: opacity, transform;
+}
+
+/* Clip wrapper for reveal-from-below text effect */
+.reveal-clip {
+  overflow: hidden;
+  display: block;
+}
+
+/* Scroll-reveal class added by GSAP after ScrollTrigger fires */
+.sr-fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  will-change: opacity, transform;
+}
+
+/* Subtle scale for card hover — enhances existing hover */
+.hero-card-wrap {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s ease;
+}
+.hero-card-wrap:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+}
+
+
+/* ── Preloader ── */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-dark-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Split panels — z-index 1 so they sit BEHIND all animated content */
+.pl-panel {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: var(--color-dark-navy);
+  z-index: 1;
+  will-change: transform;
+}
+.pl-top { top: 0; }
+.pl-bot { bottom: 0; }
+
+/* Corner L-brackets */
+.pl-corner {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  z-index: 6;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.pl-tl {
+  top: clamp(24px, 4vw, 48px);
+  left: clamp(24px, 4vw, 48px);
+  border-top: 1px solid rgba(198, 80, 37, 0.5);
+  border-left: 1px solid rgba(198, 80, 37, 0.5);
+}
+.pl-tr {
+  top: clamp(24px, 4vw, 48px);
+  right: clamp(24px, 4vw, 48px);
+  border-top: 1px solid rgba(198, 80, 37, 0.5);
+  border-right: 1px solid rgba(198, 80, 37, 0.5);
+}
+.pl-bl {
+  bottom: clamp(24px, 4vw, 48px);
+  left: clamp(24px, 4vw, 48px);
+  border-bottom: 1px solid rgba(198, 80, 37, 0.5);
+  border-left: 1px solid rgba(198, 80, 37, 0.5);
+}
+.pl-br {
+  bottom: clamp(24px, 4vw, 48px);
+  right: clamp(24px, 4vw, 48px);
+  border-bottom: 1px solid rgba(198, 80, 37, 0.5);
+  border-right: 1px solid rgba(198, 80, 37, 0.5);
+}
+
+/* Horizontal scan sweep */
+#pl-scan {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(198, 80, 37, 0.08) 15%,
+    rgba(198, 80, 37, 0.6) 50%,
+    rgba(198, 80, 37, 0.08) 85%,
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: 6;
+  will-change: transform, opacity;
+}
+
+/* Center stage */
+#pl-center {
+  position: relative;
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Frame wrapper — gives SVG absolute positioning context */
+#pl-frame-wrap {
+  position: relative;
+  padding: 22px 32px;
+}
+
+/* SVG frame that draws around logo */
+#pl-frame-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* Logo clip-wipe container */
+#pl-logo-wrap {
+  clip-path: inset(0 100% 0 0);
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+#pl-logo {
+  display: block;
+  width: clamp(180px, 22vw, 260px);
+  height: auto;
+  opacity: 0;
+}
+
+/* Underline accent */
+#pl-line {
+  width: 0;
+  height: 1px;
+  background: var(--color-vida-orange);
+  margin-top: 14px;
+  opacity: 0;
+  transform-origin: left;
+}
+
+/* Progress area */
+#pl-progress {
+  position: absolute;
+  bottom: clamp(30px, 5vh, 56px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+#pl-bar-track {
+  width: 160px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  border-radius: 9999px;
+}
+
+#pl-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-vida-orange);
+  border-radius: 9999px;
+  will-change: width;
+}
+
+#pl-pct {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.28);
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+}
+
+#preloader.done {
+  pointer-events: none;
+}
+

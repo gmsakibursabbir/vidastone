@@ -27,9 +27,39 @@
 
 <body class="relative ">
 
+  <!-- ── Preloader ── -->
+  <div id="preloader">
+    <div class="pl-panel pl-top"></div>
+    <div class="pl-panel pl-bot"></div>
+    <div class="pl-corner pl-tl"></div>
+    <div class="pl-corner pl-tr"></div>
+    <div class="pl-corner pl-bl"></div>
+    <div class="pl-corner pl-br"></div>
+    <div id="pl-scan"></div>
+    <div id="pl-center">
+      <div id="pl-frame-wrap">
+        <svg id="pl-frame-svg" xmlns="http://www.w3.org/2000/svg">
+          <rect id="pl-frame-rect" x="1" y="1" rx="1.5" ry="1.5" fill="none" stroke="#c65025" stroke-width="0.8"
+            stroke-dasharray="9999" stroke-dashoffset="9999" />
+        </svg>
+        <div id="pl-logo-wrap">
+          <img id="pl-logo" src="./images/logo.svg" alt="Vidastone" />
+        </div>
+      </div>
+      <div id="pl-line"></div>
+    </div>
+    <div id="pl-progress">
+      <div id="pl-bar-track">
+        <div id="pl-bar-fill"></div>
+      </div>
+      <span id="pl-pct">0%</span>
+    </div>
+  </div>
+  <!-- ── Preloader end ── -->
+
   <!-- header start  -->
   <header id="main-header"
-    class="md:fixed sticky top-0 left-0 right-0 z-50 md:bg-transparent bg-dark-navy xl:px-[27px] xl:pt-[27px] transition-all duration-300 ease-linear">
+    class="will-reveal md:fixed sticky top-0 left-0 right-0 z-50 md:bg-transparent bg-dark-navy xl:px-[27px] xl:pt-[27px] transition-all duration-300 ease-linear">
     <div class="md:px-[27px] md:py-[29px] p-4 hd-inner">
       <div class="flex items-center justify-between h-16 lg:h-18">
 
@@ -190,12 +220,12 @@
         <div
           class="xl:bg-none bg-[url('../images/hero-image.png')] bg-cover bg-center relative xl:rounded-none rounded-[30px] xl:p-0 p-5 xl:min-h-auto md:min-h-[650px] min-h-[460px] xl:block flex justify-start items-end xl:mb-0 md:mb-10 mb-4 xl:static before:content-[''] before:absolute before:inset-0 before:bg-black/20 before:-z-10 z-10 before:rounded-[30px]">
           <div class="flex flex-col gap-[90px] ">
-            <div class="flex flex-col gap-3">
-              <h1 class="font-IvyMode md:text-[80px] text-[40px] md:leading-[85px] leading-[45px] text-white">De basis
+          <div id="hero-text" class="flex flex-col gap-3">
+              <h1 id="hero-h1" class="will-reveal font-IvyMode md:text-[80px] text-[40px] md:leading-[85px] leading-[45px] text-white">De basis
                 van <br> kwaliteit</h1>
-              <p class="md:text-lg text-sm text-white">Gebouwd op kennis, ervaring en precisie</p>
+              <p id="hero-sub" class="will-reveal md:text-lg text-sm text-white">Gebouwd op kennis, ervaring en precisie</p>
             </div>
-            <ul class="md:flex flex-row flex-wrap gap-2.5 max-w-[450px]  hidden">
+            <ul id="hero-tags" class="will-reveal md:flex flex-row flex-wrap gap-2.5 max-w-[450px]  hidden">
               <li>
                 <a href=""
                   class="border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] h-[60px] backdrop-blur-[10px] text-white px-[30px] py-4 inline-flex hover:bg-vida-orange/50">Nieuwbouw</a>
@@ -223,10 +253,9 @@
 
         </div>
         <!-- right side item start  -->
-        <div class="2xl:max-w-[875px] xl:max-w-[720px] grid md:grid-cols-2 grid-cols-1 md:gap-7 gap-4 relative z-10">
+        <div id="hero-cards" class="will-reveal 2xl:max-w-[875px] xl:max-w-[720px] grid md:grid-cols-2 grid-cols-1 md:gap-7 gap-4 relative z-10">
           <!-- single item start  -->
-          <div
-            class="grid grid-cols-2 p-3 border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px]">
+          <div class="hero-card-wrap grid grid-cols-2 p-3 border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px]">
             <div class="">
               <img src="./images/Nieuwbouw.png" alt="Nieuwbouw"
                 class="w-full h-[194px] object-cover object-center rounded-2xl">
@@ -250,8 +279,7 @@
           <!-- single item end -->
 
           <!-- single item start  -->
-          <div
-            class="grid grid-cols-2 p-3 border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px]">
+          <div class="hero-card-wrap grid grid-cols-2 p-3 border-[.5px] border-white border-solid rounded-[30px] backdrop-brightness-[1.1] backdrop-blur-[10px]">
             <div class="">
               <img src="./images/Renovatie.png" alt="Renovatie"
                 class="w-full h-[194px] object-cover object-center rounded-2xl">
@@ -623,6 +651,97 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
   <script defer src=" ./js/index.js"></script>
+
+  <!-- Preloader Script — Geometric Reveal -->
+  <script>
+    (function () {
+      var preloader = document.getElementById('preloader');
+      if (!preloader || typeof gsap === 'undefined') return;
+
+      var logoEl = document.getElementById('pl-logo');
+      var logoWrap = document.getElementById('pl-logo-wrap');
+      var lineEl = document.getElementById('pl-line');
+      var frameRect = document.getElementById('pl-frame-rect');
+      var frameWrap = document.getElementById('pl-frame-wrap');
+      var scanEl = document.getElementById('pl-scan');
+      var barFill = document.getElementById('pl-bar-fill');
+      var pctEl = document.getElementById('pl-pct');
+      var progressEl = document.getElementById('pl-progress');
+      var corners = document.querySelectorAll('.pl-corner');
+      var panelTop = preloader.querySelector('.pl-top');
+      var panelBot = preloader.querySelector('.pl-bot');
+
+      document.body.style.overflow = 'hidden';
+
+      requestAnimationFrame(function () {
+        var bw = frameWrap.offsetWidth;
+        var bh = frameWrap.offsetHeight;
+        var rw = Math.max(bw - 2, 10);
+        var rh = Math.max(bh - 2, 10);
+        var perim = 2 * (rw + rh);
+        frameRect.setAttribute('width', rw);
+        frameRect.setAttribute('height', rh);
+        frameRect.setAttribute('stroke-dasharray', perim);
+        frameRect.setAttribute('stroke-dashoffset', perim);
+
+        gsap.set(logoEl, { opacity: 0 });
+        gsap.set(logoWrap, { clipPath: 'inset(0 100% 0 0)' });
+        gsap.set(lineEl, { width: 0, opacity: 0 });
+        gsap.set(scanEl, { scaleX: 0, transformOrigin: 'left center', opacity: 1 });
+        gsap.set('.pl-tl', { x: -14, y: -14, opacity: 0 });
+        gsap.set('.pl-tr', { x: 14, y: -14, opacity: 0 });
+        gsap.set('.pl-bl', { x: -14, y: 14, opacity: 0 });
+        gsap.set('.pl-br', { x: 14, y: 14, opacity: 0 });
+
+        var tl = gsap.timeline();
+
+        var prog = { n: 0 };
+        tl.to(prog, {
+          n: 100, duration: 2.3, ease: 'power1.inOut',
+          onUpdate: function () {
+            var v = Math.round(prog.n);
+            barFill.style.width = v + '%';
+            pctEl.textContent = (v < 10 ? '0' : '') + v + '%';
+          }
+        }, 0);
+
+        tl.to(scanEl, { scaleX: 1, duration: 0.55, ease: 'power3.inOut' }, 0);
+        tl.to(scanEl, { opacity: 0, duration: 0.22, ease: 'power1.in' }, 0.5);
+
+        tl.to('.pl-tl', { x: 0, y: 0, opacity: 1, duration: 0.45, ease: 'power2.out' }, 0.18);
+        tl.to('.pl-tr', { x: 0, y: 0, opacity: 1, duration: 0.45, ease: 'power2.out' }, 0.24);
+        tl.to('.pl-bl', { x: 0, y: 0, opacity: 1, duration: 0.45, ease: 'power2.out' }, 0.30);
+        tl.to('.pl-br', { x: 0, y: 0, opacity: 1, duration: 0.45, ease: 'power2.out' }, 0.36);
+
+        tl.to(frameRect, { strokeDashoffset: 0, duration: 0.85, ease: 'power2.inOut' }, 0.42);
+
+        tl.to(logoWrap, { clipPath: 'inset(0 0% 0 0)', duration: 0.75, ease: 'power3.out' }, 0.92);
+        tl.to(logoEl, { opacity: 1, duration: 0.05 }, 0.92);
+
+        var logoW = (logoEl.offsetWidth || 240) + 'px';
+        tl.to(lineEl, { width: logoW, opacity: 1, duration: 0.5, ease: 'power2.out' }, 1.48);
+
+        tl.to({}, { duration: 0.45 }, 2.05);
+
+        tl.to(logoWrap, { opacity: 0, y: -18, duration: 0.32, ease: 'power2.in' }, 2.3);
+        tl.to(lineEl, { opacity: 0, y: -12, duration: 0.28, ease: 'power2.in' }, 2.34);
+        tl.to(frameRect, { opacity: 0, duration: 0.28, ease: 'power1.in' }, 2.3);
+        tl.to(corners, { opacity: 0, scale: 0.82, duration: 0.28, ease: 'power1.in', stagger: 0.04 }, 2.32);
+        tl.to(progressEl, { opacity: 0, y: 10, duration: 0.28, ease: 'power2.in' }, 2.32);
+
+        tl.to(panelTop, { yPercent: -100, duration: 0.9, ease: 'expo.inOut' }, 2.58);
+        tl.to(panelBot, { yPercent: 100, duration: 0.9, ease: 'expo.inOut' }, '<');
+
+        tl.set(preloader, { display: 'none' });
+        tl.call(function () {
+          document.body.style.overflow = '';
+          preloader.classList.add('done');
+          /* ── Signal page that preloader is done ── */
+          window.dispatchEvent(new CustomEvent('preloaderDone'));
+        });
+      });
+    })();
+  </script>
   <script>
     new Swiper('.swiper', {
       spaceBetween: 28,
@@ -643,3 +762,89 @@
 </body>
 
 </html>
+
+<script>
+  /* ════════════════════════════════════════
+     PAGE REVEAL  +  SCROLL ANIMATIONS
+     All triggered by the preloader firing
+     the custom 'preloaderDone' event.
+  ════════════════════════════════════════ */
+  (function () {
+    if (typeof gsap === 'undefined') return;
+
+    /* ── Hero Reveal (fires when preloader split-panels open) ── */
+    function playHeroReveal() {
+      var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      /* Header drops down */
+      tl.to('#main-header', {
+        opacity: 1, y: 0,
+        duration: 0.9
+      }, 0);
+
+      /* Hero H1 rises up */
+      tl.to('#hero-h1', {
+        opacity: 1, y: 0,
+        duration: 1.0
+      }, 0.1);
+
+      /* Subtitle rises */
+      tl.to('#hero-sub', {
+        opacity: 1, y: 0,
+        duration: 0.8
+      }, 0.25);
+
+      /* Pill tags stagger */
+      tl.to('#hero-tags', {
+        opacity: 1, y: 0,
+        duration: 0.7
+      }, 0.38);
+
+      /* Hero right cards reveal */
+      tl.to('#hero-cards', {
+        opacity: 1, y: 0,
+        duration: 0.9
+      }, 0.2);
+    }
+
+    /* ── Listen for preloader completion ── */
+    window.addEventListener('preloaderDone', playHeroReveal, { once: true });
+
+    /* ── ScrollTrigger scroll animations ── */
+    if (typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      /* Helper: fade-up on scroll */
+      function scrollReveal(selector, delay) {
+        gsap.utils.toArray(selector).forEach(function (el) {
+          gsap.fromTo(el,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1, y: 0,
+              duration: 0.9,
+              delay: delay || 0,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                once: true
+              }
+            }
+          );
+        });
+      }
+
+      /* Intro section */
+      scrollReveal('.cm-intro h4');
+      scrollReveal('.cm-intro h2', 0.1);
+      scrollReveal('.cm-intro .cta-btn, .cm-intro a', 0.2);
+
+      /* Projects heading */
+      scrollReveal('.cm-projects-highlighted h2');
+
+      /* Footer elements */
+      scrollReveal('footer h4', 0);
+      scrollReveal('footer ul', 0.1);
+    }
+  })();
+</script>
