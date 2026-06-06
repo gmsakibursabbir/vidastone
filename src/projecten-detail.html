@@ -185,12 +185,19 @@
 
   <!-- cm-images start  -->
   <section class="md:p-7 p-4 bg-dark-navy ">
-    <div
-      class="bg-[url('../images/details-projects-bg.png')] bg-cover bg-center relative rounded-[30px] h-full flex items-end justify-start xl:p-7 xl:before:content-[''] xl:before:absolute xl:before:inset-0 xl:before:bg-black/20 xl:before:-z-10 z-10 xl:before:rounded-[30px] lg:min-h-[calc(100vh-56px)] min-h-[186px]">
-      <div class="flex flex-row justify-between items-end p-[10px] md:pt-32 w-full h-full">
+    <div id="detail-hero-container"
+      class="relative rounded-[30px] h-full flex items-end justify-start xl:p-7 z-10 overflow-hidden lg:min-h-[calc(100vh-56px)] min-h-[186px]">
+      <!-- Background Layers for true crossfade -->
+      <div id="bg-active" class="absolute inset-0 bg-[url('../images/details-projects-bg.png')] bg-cover bg-center -z-20"></div>
+      <div id="bg-incoming" class="absolute inset-0 bg-cover bg-center opacity-0 -z-20"></div>
+      <!-- Black overlay layer -->
+      <div class="absolute inset-0 xl:bg-black/20 bg-black/10 -z-10"></div>
+
+      <div class="flex flex-row justify-between items-end p-[10px] md:pt-32 w-full h-full relative z-20">
         <!-- left item start  -->
         <div class="flex flex-row justify-center gap-[7px]">
-          <button
+          <!-- previous button -->
+          <button id="prev-btn"
             class="bg-white/20 hover:bg-vida-orange/80 transition-colors duration-300 backdrop-blur-md border border-white rounded-full text-white md:w-[48px] md:h-[48px] w-[38px] h-[38px] flex items-center justify-center cursor-pointer"><svg
               xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -202,7 +209,8 @@
             </svg>
 
           </button>
-          <button
+          <!-- next button -->
+          <button id="next-btn"
             class="bg-white/20 hover:bg-vida-orange/80 transition-colors duration-300 backdrop-blur-md border border-white rounded-full text-white md:w-[48px] md:h-[48px] w-[38px] h-[38px] flex items-center justify-center cursor-pointer"><svg
               xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -216,7 +224,8 @@
           </button>
         </div>
         <!-- right side item start  -->
-        <button
+        <!-- fullscreen button -->
+        <button id="fullscreen-btn"
           class="bg-white/20 hover:bg-vida-orange/80 transition-colors duration-300 backdrop-blur-md border border-white rounded-full text-white md:w-[48px] md:h-[48px] w-[38px] h-[38px] flex items-center justify-center cursor-pointer"><svg
             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -490,6 +499,216 @@
           grabCursor: false,
         }
       }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const heroContainer = document.getElementById("detail-hero-container");
+      const prevBtn = document.getElementById("prev-btn");
+      const nextBtn = document.getElementById("next-btn");
+      const fullscreenBtn = document.getElementById("fullscreen-btn");
+      const bgActive = document.getElementById("bg-active");
+      const bgIncoming = document.getElementById("bg-incoming");
+      //cm-images list here
+      const images = [
+        "./images/details-projects-bg.png",
+        "./images/hero-image.png"
+      ];
+      let currentIndex = 0;
+
+      const maximizeSvg = `<svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-maximize size-4">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
+            <path d="M4 16v2a2 2 0 0 0 2 2h2" />
+            <path d="M16 4h2a2 2 0 0 1 2 2v2" />
+            <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
+          </svg>`;
+
+      const minimizeSvg = `<svg
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-minimize size-4">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M15 19v-2a2 2 0 0 1 2 -2h2" />
+            <path d="M15 5v2a2 2 0 0 0 2 2h2" />
+            <path d="M5 15h2a2 2 0 0 1 2 2v2" />
+            <path d="M5 9h2a2 2 0 0 0 2 -2v-2" />
+          </svg>`;
+
+      function updateBackground(index) {
+        if (!bgActive || !bgIncoming) return;
+        currentIndex = index;
+
+        const nextImageUrl = images[currentIndex];
+        bgIncoming.style.backgroundImage = `url('${nextImageUrl}')`;
+
+        gsap.killTweensOf([bgActive, bgIncoming]);
+
+        // Crossfade incoming background in (zooming from slightly larger to standard size)
+        gsap.fromTo(bgIncoming,
+          { opacity: 0, scale: 1.06 },
+          {
+            duration: 0.75,
+            opacity: 1,
+            scale: 1,
+            ease: "power2.out",
+            onComplete: () => {
+              bgActive.style.backgroundImage = `url('${nextImageUrl}')`;
+              gsap.set(bgIncoming, { opacity: 0 });
+            }
+          }
+        );
+
+        // Zoom out and fade current background slightly
+        gsap.fromTo(bgActive,
+          { opacity: 1, scale: 1 },
+          {
+            duration: 0.75,
+            opacity: 0.3,
+            scale: 0.95,
+            ease: "power2.out",
+            onComplete: () => {
+              gsap.set(bgActive, { opacity: 1, scale: 1 });
+            }
+          }
+        );
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+          let newIndex = currentIndex - 1;
+          if (newIndex < 0) {
+            newIndex = images.length - 1;
+          }
+          updateBackground(newIndex);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+          let newIndex = currentIndex + 1;
+          if (newIndex >= images.length) {
+            newIndex = 0;
+          }
+          updateBackground(newIndex);
+        });
+      }
+
+      let isZoomed = false;
+      let spacer = null;
+
+      function toggleZoom() {
+        if (!heroContainer || !fullscreenBtn) return;
+
+        // 1. First: Record initial position
+        const firstRect = heroContainer.getBoundingClientRect();
+
+        if (!isZoomed) {
+          // Create layout spacer to prevent jumping of lower elements
+          spacer = document.createElement("div");
+          spacer.style.width = "100%";
+          spacer.style.height = `${firstRect.height}px`;
+          heroContainer.parentNode.insertBefore(spacer, heroContainer);
+
+          // 2. Change: Go fullscreen fixed overlay
+          heroContainer.classList.remove("relative", "rounded-[30px]", "lg:min-h-[calc(100vh-56px)]", "min-h-[186px]");
+          heroContainer.classList.add("fixed", "inset-0", "z-50", "w-screen", "h-screen", "rounded-none");
+          document.body.classList.add("overflow-hidden");
+          fullscreenBtn.innerHTML = minimizeSvg;
+          isZoomed = true;
+
+          // 3. Last: Record final position
+          const lastRect = heroContainer.getBoundingClientRect();
+
+          // 4. Invert: Calculate deltas
+          const deltaX = firstRect.left - lastRect.left;
+          const deltaY = firstRect.top - lastRect.top;
+          const deltaW = firstRect.width / lastRect.width;
+          const deltaH = firstRect.height / lastRect.height;
+
+          // 5. Play: Animate from original position to full screen
+          gsap.fromTo(heroContainer,
+            {
+              x: deltaX,
+              y: deltaY,
+              scaleX: deltaW,
+              scaleY: deltaH,
+              transformOrigin: "top left",
+              borderRadius: "30px"
+            },
+            {
+              duration: 0.55,
+              x: 0,
+              y: 0,
+              scaleX: 1,
+              scaleY: 1,
+              borderRadius: "0px",
+              ease: "power3.inOut",
+              clearProps: "transform,transformOrigin,borderRadius"
+            }
+          );
+        } else {
+          // Zoom out: Record current fullscreen position
+          const firstRectZoomed = heroContainer.getBoundingClientRect();
+
+          // 2. Change: Restore normal layout state
+          heroContainer.classList.remove("fixed", "inset-0", "z-50", "w-screen", "h-screen", "rounded-none");
+          heroContainer.classList.add("relative", "rounded-[30px]", "lg:min-h-[calc(100vh-56px)]", "min-h-[186px]");
+          document.body.classList.remove("overflow-hidden");
+          fullscreenBtn.innerHTML = maximizeSvg;
+          isZoomed = false;
+
+          // Remove spacer immediately to get proper last rect layout measurement
+          if (spacer) {
+            spacer.remove();
+            spacer = null;
+          }
+
+          // 3. Last: Record restored position
+          const lastRectRestored = heroContainer.getBoundingClientRect();
+
+          // 4. Invert: Calculate deltas
+          const deltaX = firstRectZoomed.left - lastRectRestored.left;
+          const deltaY = firstRectZoomed.top - lastRectRestored.top;
+          const deltaW = firstRectZoomed.width / lastRectRestored.width;
+          const deltaH = firstRectZoomed.height / lastRectRestored.height;
+
+          // 5. Play: Animate from fullscreen back to card position
+          gsap.fromTo(heroContainer,
+            {
+              x: deltaX,
+              y: deltaY,
+              scaleX: deltaW,
+              scaleY: deltaH,
+              transformOrigin: "top left",
+              borderRadius: "0px"
+            },
+            {
+              duration: 0.55,
+              x: 0,
+              y: 0,
+              scaleX: 1,
+              scaleY: 1,
+              borderRadius: "30px",
+              ease: "power3.inOut",
+              clearProps: "transform,transformOrigin,borderRadius"
+            }
+          );
+        }
+      }
+
+      if (fullscreenBtn) {
+        fullscreenBtn.addEventListener("click", toggleZoom);
+      }
+
+      // Allow ESC key to exit zoom mode
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && isZoomed) {
+          toggleZoom();
+        }
+      });
     });
   </script>
 </body>

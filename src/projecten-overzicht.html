@@ -387,6 +387,17 @@ Kantoor VI Company
           </div>
         </a>
       </div>
+
+      <!-- No Product Found Message -->
+      <div id="no-products-message" class="hidden col-span-full flex flex-col items-center justify-center text-center py-20 px-6 bg-white/5 border border-white/10 rounded-[30px] backdrop-blur-[10px] max-w-xl mx-auto w-full">
+        <div class="w-20 h-20 bg-vida-orange/10 border border-vida-orange/20 rounded-full flex items-center justify-center mb-6 text-vida-orange text-3xl">
+          <i class="fa-regular fa-folder-open"></i>
+        </div>
+        <h3 class="text-white text-2xl lg:text-3xl font-IvyMode mb-3">No Product Found</h3>
+        <p class="text-white/60 text-base max-w-md leading-relaxed">
+          Er zijn momenteel geen projecten beschikbaar in deze categorie. Kies een andere categorie om onze projecten te bekijken.
+        </p>
+      </div>
     </div>
   </section>
   <!-- cm-projects end -->
@@ -571,6 +582,7 @@ Kantoor VI Company
       const mobileFilterArrow = document.getElementById("mobile-filter-arrow");
       const mobileOptions = document.querySelectorAll(".mobile-filter-opt");
       const cards = document.querySelectorAll(".project-card");
+      const noProductsMessage = document.getElementById("no-products-message");
 
       // Handle card visibility based on active filter
       function applyFilter(filterValue) {
@@ -586,6 +598,8 @@ Kantoor VI Company
             cardsToHide.push(card);
           }
         });
+
+        const showNoProducts = cardsToShow.length === 0;
 
         // 1. Record "First" positions of cards that will remain visible
         const firstPositions = new Map();
@@ -618,8 +632,35 @@ Kantoor VI Company
           }
         });
 
+        // Also fade out "no products" message if it's currently showing and we are going to show cards
+        if (!showNoProducts && noProductsMessage && !noProductsMessage.classList.contains("hidden")) {
+          hidePromises.push(new Promise(resolve => {
+            gsap.to(noProductsMessage, {
+              duration: 0.2,
+              opacity: 0,
+              scale: 0.95,
+              y: -15,
+              ease: "power2.inOut",
+              onComplete: () => {
+                noProductsMessage.classList.add("hidden");
+                resolve();
+              }
+            });
+          }));
+        }
+
         // 3. Wait for hide animations to finish, then position and slide remaining cards
         Promise.all(hidePromises).then(() => {
+          if (showNoProducts && noProductsMessage) {
+            if (noProductsMessage.classList.contains("hidden")) {
+              noProductsMessage.classList.remove("hidden");
+              gsap.fromTo(noProductsMessage,
+                { opacity: 0, scale: 0.95, y: 15 },
+                { duration: 0.45, opacity: 1, scale: 1, y: 0, ease: "power2.out" }
+              );
+            }
+          }
+
           // Make sure all target cards are shown in the layout flow
           cardsToShow.forEach(card => {
             card.classList.remove("hidden");
@@ -643,10 +684,10 @@ Kantoor VI Company
           // Invert and animate
           deltas.forEach(({ card, deltaX, deltaY, isNew }) => {
             if (isNew) {
-              // Fade in new card with a beautiful springy ease
+              // Fade in new card with a beautiful smooth ease (no bounce)
               gsap.fromTo(card,
-                { opacity: 0, scale: 0.85, y: 15 },
-                { duration: 0.45, opacity: 1, scale: 1, y: 0, ease: "back.out(1.1)", clearProps: "all" }
+                { opacity: 0, scale: 0.95, y: 15 },
+                { duration: 0.45, opacity: 1, scale: 1, y: 0, ease: "power2.out", clearProps: "all" }
               );
             } else if (deltaX !== 0 || deltaY !== 0) {
               // Smoothly slide card from old position (deltaX, deltaY) to new (0, 0)
